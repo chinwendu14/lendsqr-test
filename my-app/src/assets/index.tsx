@@ -25,9 +25,11 @@ import usericon from "./svg/userIcon.svg";
 import activeUsers from "./svg/activeUsers.svg";
 import userloan from "./svg/userloan.svg";
 import userSavings from "./svg/userSavings.svg";
+import userDetailImg from "./svg/avatar.svg";
 
 export {
   logo,
+  userDetailImg,
   slider,
   activeUsers,
   userloan,

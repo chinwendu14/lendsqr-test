@@ -12,10 +12,7 @@ const DashboardNavigation = () => {
       <Suspense fallback={<SpinnerLoader />}>
         <Routes>
           <Route path="/" element={<User />} />
-          <Route
-            path="/dashboard/user/user-detail/:id"
-            element={<UserDetail />}
-          />
+          <Route path="/user-detail/:id" element={<UserDetail />} />
         </Routes>
       </Suspense>
     </Layout>
