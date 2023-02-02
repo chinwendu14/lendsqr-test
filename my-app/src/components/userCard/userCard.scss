@@ -1,0 +1,32 @@
+@use "../../styles/" as *;
+.usersCard {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  .usersCard__container {
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.2);
+    padding: 20px 0px 0px 20px;
+    border-radius: 5px;
+    background-color: white;
+    p {
+      font-size: 16px;
+      margin: 10px 0;
+      color: #545f7d;
+    }
+    h3 {
+      font-size: 20px;
+      color: $secondary;
+    }
+  }
+}
+@include maxWidth(500px) {
+  .usersCard {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+@include minMaxWidth(501px, 800px) {
+  .usersCard {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

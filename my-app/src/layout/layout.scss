@@ -1,0 +1,17 @@
+@use "../styles/" as *;
+.layout {
+  .layout__container {
+    display: flex;
+    justify-content: space-between;
+    .layout__sidebarContainer {
+      width: 20%;
+      box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.2);
+      background-color: white;
+    }
+    .layout__childrenDiv {
+      width: 80%;
+      background-color: rgba(0, 0, 0, 0.03);
+      padding: 30px;
+    }
+  }
+}

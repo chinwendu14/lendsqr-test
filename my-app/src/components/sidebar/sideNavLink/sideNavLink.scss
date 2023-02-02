@@ -1,0 +1,33 @@
+@use "../../../styles/" as *;
+.sideNavBarLink {
+  h4 {
+    padding: 5px 20px;
+  }
+  .sideNavBarLink__listContainer {
+    display: flex;
+    align-items: center;
+    color: #213f7d;
+    padding: 10px 20px;
+
+    img {
+      margin-right: 12px;
+    }
+  }
+  .active {
+    padding: 3px 20px;
+    background-color: #39cdcd1e;
+  }
+}
+
+@include maxWidth(770px) {
+  .sideNavBarLink {
+    h4 {
+      display: none;
+    }
+    .sideNavBarLink__listContainer {
+      p {
+        display: none;
+      }
+    }
+  }
+}

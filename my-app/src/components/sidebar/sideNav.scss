@@ -1,0 +1,19 @@
+@use "../../styles/" as *;
+.sideNav {
+  .sideNav__switchDiv {
+    display: flex;
+    align-items: center;
+    padding: 20px 20px 10px 20px;
+    .p {
+      margin: 0 10px;
+    }
+  }
+}
+
+@include maxWidth(770px) {
+  .sideNav__switchDiv {
+    p {
+      display: none;
+    }
+  }
+}

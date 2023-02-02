@@ -1,0 +1,20 @@
+@use "../../styles" as *;
+
+.formInput {
+  margin: 15px 0;
+  width: 100%;
+  .formInput__label {
+    margin-bottom: 10px;
+  }
+
+  .formInput__input {
+    outline: none;
+    border: 1px solid #545f7d26;
+    padding: 14px 0px 14px 5px;
+    border-radius: 5px;
+    width: 100%;
+    &::placeholder {
+      font-size: 14px;
+    }
+  }
+}

@@ -1,0 +1,40 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;500;600;700&display=swap");
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Open Sans", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a,
+button {
+  font-family: inherit;
+}
+
+:is(ul, ol) li {
+  list-style-type: none;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #213f7d;
+  border-radius: 20px;
+}
+::-webkit-scrollbar {
+  background-color: #39cdcc;
+  width: 10px;
+}
