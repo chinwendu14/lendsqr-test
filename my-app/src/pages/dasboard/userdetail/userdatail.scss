@@ -48,6 +48,9 @@
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 30px;
+      img {
+        border-radius: 50%;
+      }
       h3 {
         color: $secondary;
       }
