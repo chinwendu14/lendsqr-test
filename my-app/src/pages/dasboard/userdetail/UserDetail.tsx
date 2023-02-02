@@ -1,13 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./userdatail.scss";
 import { BsArrowLeft, BsFillStarFill, BsStar } from "react-icons/bs";
-import { userDetailImg } from "../../../assets";
+// import { userDetailImg } from "../../../assets";
+import { useParams } from "react-router-dom";
+import BASE_URL from "../../../config";
 const UserDetail = () => {
   const [showInfo, setShowinfo] = useState(1);
-
+  const params = useParams();
+  const { id } = params;
+  const [userdetail, setuserdetail] = useState<any>({});
   const handlecomponent = (arg: any) => {
     setShowinfo(arg);
   };
+  useEffect(() => {
+    const getUser = async () => {
+      const detail = await BASE_URL.get(`/users/${id}`);
+      const response = detail.data;
+      setuserdetail(response);
+    };
+    getUser();
+  }, [id]);
+  console.log(userdetail, "iiiiiiiiiiiiiiii");
+
   return (
     <div className="userDetail">
       <p className="icon">
@@ -25,10 +39,12 @@ const UserDetail = () => {
       </div>
       <div className="userDetail__boxshadow">
         <div className="userDetail__FlexContainer">
-          <img src={userDetailImg} alt="img" />
+          <img src={userdetail?.profile?.avatar} alt="img" />
           <div className="userDetail__effiongDiv">
-            <h3>Grace Effiom</h3>
-            <p>LSQFf587g90</p>
+            <h3>
+              {userdetail?.profile?.firstName} {userdetail?.profile?.lastName}
+            </h3>
+            <p>{userdetail?.accountNumber}</p>
           </div>
           <div className="userDetail__userTierDiv">
             <h3>User’s Tier</h3>
@@ -46,7 +62,7 @@ const UserDetail = () => {
             </p>
           </div>
           <div className="userDetail__moneyDiv">
-            <h3>₦200,000.00</h3>
+            <h3>{userdetail?.accountBalance}</h3>
             <p>9912345678/Providus Bank</p>
           </div>
         </div>
@@ -72,23 +88,26 @@ const UserDetail = () => {
               <div className="userDetail__gridDiv">
                 <div>
                   <h4>full Name</h4>
-                  <p>Grace Effiom</p>
+                  <p>
+                    {userdetail?.profile?.firstName}{" "}
+                    {userdetail?.profile?.lastName}
+                  </p>
                 </div>
                 <div>
                   <h4>Phone Number</h4>
-                  <p>07060780922</p>
+                  <p>{userdetail?.profile?.phoneNumber}</p>
                 </div>
                 <div>
                   <h4>Email Address</h4>
-                  <p>grace@gmail.com</p>
+                  <p>{userdetail?.email}</p>
                 </div>
                 <div>
                   <h4>Bvn</h4>
-                  <p>07060780922</p>
+                  <p>{userdetail?.profile?.bvn}</p>
                 </div>
                 <div>
                   <h4>Gender</h4>
-                  <p>Female</p>
+                  <p>{userdetail?.profile?.gender}</p>
                 </div>
                 <div>
                   <h4>Marital status</h4>
@@ -109,31 +128,31 @@ const UserDetail = () => {
               <div className="userDetail__gridDivEdu">
                 <div>
                   <h4>level of education</h4>
-                  <p>B.Sc</p>
+                  <p>{userdetail?.education?.level}</p>
                 </div>
                 <div>
                   <h4>employment status</h4>
-                  <p>Employed</p>
+                  <p>{userdetail?.education?.employmentStatus}</p>
                 </div>
                 <div>
                   <h4>sector of employment</h4>
-                  <p>FinTech</p>
+                  <p>{userdetail?.education?.sector}</p>
                 </div>
                 <div>
                   <h4>Duration of employment</h4>
-                  <p>2 years</p>
+                  <p>{userdetail?.education?.duration}</p>
                 </div>
                 <div>
                   <h4>office email</h4>
-                  <p>grace@lendsqr.com</p>
+                  <p>{userdetail?.education?.officeEmail}</p>
                 </div>
                 <div>
                   <h4>Monthly income</h4>
-                  <p>₦200,000.00- ₦400,000.00</p>
+                  <p>{`₦${userdetail?.education?.monthlyIncome[0]}- ₦${userdetail?.education?.monthlyIncome[1]}`}</p>
                 </div>
                 <div>
                   <h4>loan repayment</h4>
-                  <p>40,000</p>
+                  <p>{userdetail?.education?.loanRepayment}</p>
                 </div>
               </div>
             </div>
@@ -142,15 +161,15 @@ const UserDetail = () => {
               <div className="userDetail__gridDivSocial">
                 <div>
                   <h4>Twitter</h4>
-                  <p>@grace_effiom</p>
+                  <p>{userdetail?.socials?.twitter}</p>
                 </div>
                 <div>
                   <h4>Facebook</h4>
-                  <p>Grace Effiom</p>
+                  <p>{userdetail?.socials?.facebook}</p>
                 </div>
                 <div>
                   <h4>Instagram</h4>
-                  <p>@grace_effiom</p>
+                  <p>{userdetail?.socials?.instagram}</p>
                 </div>
               </div>
             </div>
@@ -160,40 +179,22 @@ const UserDetail = () => {
               <div className="userDetail__gridDivFull">
                 <div>
                   <h4>full Name</h4>
-                  <p>Debby Ogana</p>
+                  <p>
+                    {userdetail?.guarantor?.firstName}{" "}
+                    {userdetail?.guarantor?.lastName}
+                  </p>
                 </div>
                 <div>
                   <h4>Phone Number</h4>
-                  <p>07060780922</p>
+                  <p>{userdetail?.guarantor?.phoneNumber}</p>
                 </div>
                 <div>
-                  <h4>Email Address</h4>
-                  <p>debby@gmail.com</p>
-                </div>
-                <div>
-                  <h4>Relationship</h4>
-                  <p>Sister</p>
-                </div>
-              </div>
-            </div>
-            <div className="userDetail__personalInfoDiv">
-              <h4 className="h4">Socials</h4>
-              <div className="userDetail__gridDivFull">
-                <div>
-                  <h4>full Name</h4>
-                  <p>Debby Ogana</p>
-                </div>
-                <div>
-                  <h4>Phone Number</h4>
-                  <p>07060780922</p>
-                </div>
-                <div>
-                  <h4>Email Address</h4>
-                  <p>debby@gmail.com</p>
+                  <h4> Address</h4>
+                  <p>{userdetail?.guarantor?.address}</p>
                 </div>
                 <div>
                   <h4>Relationship</h4>
-                  <p>Sister</p>
+                  <p>{userdetail?.guarantor?.gender}</p>
                 </div>
               </div>
             </div>
