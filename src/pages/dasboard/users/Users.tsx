@@ -50,13 +50,7 @@ const Users = () => {
       setUsers(response.slice(currentPage * 10 - 10, currentPage * 10));
     }
   };
-  const handleSubmit = (e: any) => {
-    e.preventDefault();
-    handleOrgName();
-    handleUserName();
-    handleEmail();
-    handleStatus();
-  };
+
   const handleOrgName = async () => {
     const orgList = await BASE_URL.get("/users");
     if (orgValue !== "") {
@@ -110,7 +104,13 @@ const Users = () => {
       setUsers(filterOrg);
     }
   };
-
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    handleOrgName();
+    handleUserName();
+    handleEmail();
+    handleStatus();
+  };
   const handleChangeorgName = async (e: any) => {
     setorgValue(e.target.value);
   };
@@ -235,7 +235,7 @@ const Users = () => {
               <option value="blacklisted">Blacklisted</option>
             </select>
             <div className="users__btnDiv">
-              <button className="reset" onClick={handleReset}>
+              <button type="submit" className="reset" onClick={handleReset}>
                 Reset
               </button>
               <button className="filter" type="submit" onClick={handleSubmit}>
