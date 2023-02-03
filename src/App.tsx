@@ -1,17 +1,7 @@
-// import RouterConfig from "./navigation/RouterConfig";
+import RouterConfig from "./navigation/RouterConfig";
 
 function App() {
-  return (
-    <div>
-      <div>hello world</div>
-      <div>hello world</div>
-      <div>hello world</div>
-      <div>hello world</div>
-      <div>hello world</div>
-    </div>
-  );
-
-  // <RouterConfig />;
+  return <RouterConfig />;
 }
 
 export default App;
