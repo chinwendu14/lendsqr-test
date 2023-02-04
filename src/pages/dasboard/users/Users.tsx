@@ -3,6 +3,7 @@ import UserCard from "../../../components/userCard/UserCard";
 import "./user.scss";
 import { BsWifi, BsThreeDotsVertical } from "react-icons/bs";
 import BASE_URL from "../../../config";
+
 import Moment from "react-moment";
 import SpinnerLoader from "../../../components/spinnerloader/SpinnerLoader";
 import ReactPaginate from "react-paginate";
@@ -12,7 +13,7 @@ import { BsEye, BsPersonCheck, BsPersonX } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 
 const Users = () => {
-  const [user, setUsers] = useState([]);
+  const [user, setUsers] = useState<any>([]);
   const [userLoading, setUsersLoading] = useState(true);
   const [totalUser, setTotalUser] = useState([]);
   const [orgValue, setorgValue] = useState("");
@@ -92,16 +93,6 @@ const Users = () => {
         (item: any) => parseInt(item.lastActiveDate) > 2020 && 2024
       );
       setUsers(filterOrg);
-    } else if (status === "pending") {
-      const filterOrg = orgList.data.filter(
-        (item: any) => parseInt(item.lastActiveDate) > 2025
-      );
-      setUsers(filterOrg);
-    } else {
-      const filterOrg = orgList.data.filter((item: any) =>
-        parseInt(item.lastActiveDate)
-      );
-      setUsers(filterOrg);
     }
   };
   const handleSubmit = (e: any) => {
@@ -127,10 +118,10 @@ const Users = () => {
   const handleChangeStaus = async (e: any) => {
     setstatus(e.target.value);
   };
-  // const handleReset = async () => {
-  //   const userList = await BASE_URL.get("/users");
-  //   setUsers(userList.data);
-  // };
+  const handleReset = async () => {
+    const userList = await BASE_URL.get("/users");
+    setUsers(userList.data);
+  };
   return (
     <div className="users">
       <h3 className="h3">Users</h3>
@@ -197,54 +188,54 @@ const Users = () => {
             </tbody>
           </table>
         )}
-        <div className={`users__searchDivContainer ${toggle ? "show" : ""}`}>
-          <form>
-            <p>Organization</p>
-            <select onChange={handleChangeorgName}>
-              <option value="">select </option>
-              {user?.map((item: any, i: any) => {
-                return (
-                  <option key={i} value={item.orgName}>
-                    {item.orgName}
-                  </option>
-                );
-              })}
-            </select>
-            <TextField
-              label="Username"
-              value={username}
-              onChange={handleChangeUserName}
-              type="text"
-            />
-            <TextField
-              label="Email"
-              value={email}
-              onChange={handleChangeEmail}
-              type="email"
-            />
-            <TextField
-              label="Date"
-              value={date}
-              onChange={handleChangeDate}
-              type="datetime-local"
-            />
-            <select onChange={handleChangeStaus}>
-              <option value={status}>select </option>
-              <option value="active">Active</option>
-              <option value="inactive">Inactive</option>
-              <option value="pending">Pending</option>
-              <option value="blacklisted">Blacklisted</option>
-            </select>
-            <div className="users__btnDiv">
-              <button type="submit" className="reset">
-                {/* onClick={handleReset} */}
-                Reset
-              </button>
-              <button className="filter" type="submit" onClick={handleSubmit}>
-                Filter
-              </button>
-            </div>
-          </form>
+        <div
+          className={`users__searchDivContainer ${toggle ? "show" : ""}`}
+          data-testid="showsearchdiv"
+        >
+          <p>Organization</p>
+          <select onChange={handleChangeorgName}>
+            <option value="">select </option>
+            {user?.map((item: any, i: any) => {
+              return (
+                <option key={i} value={item.orgName}>
+                  {item.orgName}
+                </option>
+              );
+            })}
+          </select>
+          <TextField
+            label="Username"
+            value={username}
+            onChange={handleChangeUserName}
+            type="text"
+          />
+          <TextField
+            label="Email"
+            value={email}
+            onChange={handleChangeEmail}
+            type="email"
+          />
+          <TextField
+            label="Date"
+            value={date}
+            onChange={handleChangeDate}
+            type="datetime-local"
+          />
+          <select onChange={handleChangeStaus}>
+            <option value={status}>select </option>
+            <option value="active">Active</option>
+            <option value="inactive">Inactive</option>
+            <option value="pending">Pending</option>
+            <option value="blacklisted">Blacklisted</option>
+          </select>
+          <div className="users__btnDiv">
+            <button type="submit" className="reset" onClick={handleReset}>
+              Reset
+            </button>
+            <button className="filter" type="submit" onClick={handleSubmit}>
+              Filter
+            </button>
+          </div>
         </div>
       </div>
       <div className="users__paginationShowContainer">
@@ -346,7 +337,10 @@ const TableMap: React.FC<Props> = ({
         <i onClick={handleShowDot}>
           <BsThreeDotsVertical />
         </i>
-        <div className={`users__dotDiv ${showdot ? "showdot" : ""}`}>
+        <div
+          className={`users__dotDiv ${showdot ? "showdot" : ""}`}
+          data-testid="showDotdiv"
+        >
           <p onClick={() => navigate(`/dashboard/user/user-detail/:${id}`)}>
             <i>
               <BsEye />

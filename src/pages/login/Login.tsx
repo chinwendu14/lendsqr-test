@@ -85,7 +85,9 @@ const Login = () => {
           ) : null}
           <p className="login__para">Forgot PASSWORD?</p>
           <div className="login__btn">
-            <button type="submit">LOG IN</button>
+            <button data-testid="submit" type="submit">
+              LOG IN
+            </button>
           </div>
         </form>
       </div>
