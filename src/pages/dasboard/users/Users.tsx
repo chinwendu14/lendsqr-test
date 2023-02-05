@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import UserCard from "../../../components/userCard/UserCard";
 import "./user.scss";
 import { BsWifi, BsThreeDotsVertical } from "react-icons/bs";
-import BASE_URL from "../../../config";
-
+import axiosInstatnce from "../../../config";
 import Moment from "react-moment";
 import SpinnerLoader from "../../../components/spinnerloader/SpinnerLoader";
 import ReactPaginate from "react-paginate";
@@ -29,7 +28,7 @@ const Users = () => {
   useEffect(() => {
     try {
       const getUsers = async () => {
-        const userList = await BASE_URL.get("/users");
+        const userList = await axiosInstatnce.get("/users");
         const response = userList.data;
         if (response) {
           setUsers(response.slice(0, 10));
@@ -45,7 +44,7 @@ const Users = () => {
   }, []);
   const handlePageClick = async (data: any) => {
     const currentPage = data.selected + 1;
-    const refreshUser = await BASE_URL.get("/users");
+    const refreshUser = await axiosInstatnce.get("/users");
     const response = refreshUser.data;
     if (currentPage) {
       setUsers(response.slice(currentPage * 10 - 10, currentPage * 10));
@@ -53,7 +52,7 @@ const Users = () => {
   };
 
   const handleOrgName = async () => {
-    const orgList = await BASE_URL.get("/users");
+    const orgList = await axiosInstatnce.get("/users");
     if (orgValue !== "") {
       const filterOrg = orgList.data.filter((item: any) => {
         return item.orgName.toLowerCase().includes(orgValue.toLowerCase());
@@ -63,7 +62,7 @@ const Users = () => {
   };
 
   const handleUserName = async () => {
-    const orgList = await BASE_URL.get("/users");
+    const orgList = await axiosInstatnce.get("/users");
     if (username !== "") {
       const filterOrg = orgList.data.filter((item: any) => {
         return item.userName.toLowerCase().includes(username.toLowerCase());
@@ -72,7 +71,7 @@ const Users = () => {
     }
   };
   const handleEmail = async () => {
-    const orgList = await BASE_URL.get("/users");
+    const orgList = await axiosInstatnce.get("/users");
     if (email !== "") {
       const filterOrg = orgList.data.filter((item: any) => {
         return item.email.toLowerCase().includes(email.toLowerCase());
@@ -82,7 +81,7 @@ const Users = () => {
   };
 
   const handleStatus = async () => {
-    const orgList = await BASE_URL.get("/users");
+    const orgList = await axiosInstatnce.get("/users");
     if (status === "inactive") {
       const filterOrg = orgList.data.filter(
         (item: any) => parseInt(item.lastActiveDate) < 2020
@@ -119,7 +118,7 @@ const Users = () => {
     setstatus(e.target.value);
   };
   const handleReset = async () => {
-    const userList = await BASE_URL.get("/users");
+    const userList = await axiosInstatnce.get("/users");
     setUsers(userList.data);
   };
   return (
@@ -193,7 +192,7 @@ const Users = () => {
           data-testid="showsearchdiv"
         >
           <p>Organization</p>
-          <select onChange={handleChangeorgName}>
+          <select onChange={handleChangeorgName} placeholder="organisation">
             <option value="">select </option>
             {user?.map((item: any, i: any) => {
               return (
@@ -208,20 +207,26 @@ const Users = () => {
             value={username}
             onChange={handleChangeUserName}
             type="text"
+            placeholder="username"
+            className="hidde__placeholder"
           />
           <TextField
             label="Email"
             value={email}
             onChange={handleChangeEmail}
             type="email"
+            placeholder="email"
+            className="hidde__placeholder"
           />
           <TextField
             label="Date"
             value={date}
             onChange={handleChangeDate}
             type="datetime-local"
+            placeholder="data"
+            className="hidde__placeholder"
           />
-          <select onChange={handleChangeStaus}>
+          <select onChange={handleChangeStaus} placeholder="status">
             <option value={status}>select </option>
             <option value="active">Active</option>
             <option value="inactive">Inactive</option>
@@ -229,10 +234,20 @@ const Users = () => {
             <option value="blacklisted">Blacklisted</option>
           </select>
           <div className="users__btnDiv">
-            <button type="submit" className="reset" onClick={handleReset}>
+            <button
+              type="submit"
+              className="reset"
+              onClick={handleReset}
+              data-testid="btn"
+            >
               Reset
             </button>
-            <button className="filter" type="submit" onClick={handleSubmit}>
+            <button
+              className="filter"
+              type="submit"
+              onClick={handleSubmit}
+              data-testid="btn"
+            >
               Filter
             </button>
           </div>

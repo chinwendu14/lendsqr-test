@@ -119,7 +119,13 @@
         border-radius: 5px;
         color: black;
       }
-
+      .hidde__placeholder {
+        input {
+          &::placeholder {
+            visibility: hidden;
+          }
+        }
+      }
       .users__btnDiv {
         display: flex;
         align-items: center;
@@ -227,3 +233,203 @@
     }
   }
 }
+
+// import Users from "./Users";
+// import { render, } from "@testing-library/react";
+// fireEvent, screen
+// import axios from "axios";
+// waitFor,
+// import { BASE_URL } from "../../../config";
+// import { MemoryRouter as Router } from "react-router-dom";
+// import axios from "axios";
+// test("show error message wwhen fields are not enter", () => {
+//   render(
+//     <Router>
+//       <Users />
+//     </Router>
+//   );
+//   const element: HTMLElement[] = screen.getAllByTestId("card");
+//   expect(element).toBeInTheDocument();
+// });
+// test("show div content", () => {
+//   render(
+//     <Router>
+//       <Users />
+//     </Router>
+//   );
+//   const element: any = screen.getAllByTestId("showsearchdiv");
+//   expect(element).not.toBeInTheDocument();
+//   fireEvent.click(element);
+//   expect(element).toBeInTheDocument();
+// });
+// test("show dot div content", () => {
+//   render(
+//     <Router>
+//       <Users />
+//     </Router>
+//   );
+//   const element: any = screen.getAllByTestId("showDotdiv");
+//   expect(element).not.toBeInTheDocument();
+//   fireEvent.click(element);
+//   expect(element).toBeInTheDocument();
+// });
+
+// const dummyTodos = [
+//   {
+//     userId: 1,
+//     id: 1,
+//     title: "todo 1",
+//     completed: false,
+//   },
+//   {
+//     userId: 1,
+//     id: 2,
+//     title: "todo 2",
+//     completed: false,
+//   },
+//   {
+//     userId: 1,
+//     id: 3,
+//     title: "todo 3",
+//     completed: false,
+//   },
+// ];
+
+// axios.get.mockResolvedValue({ data: dummyTodos });
+// jest.mock("axios");
+
+// test("todos list", async () => {
+//   render(
+//     <Router>
+//       <Users />
+//     </Router>
+//   );
+
+//   const users = [
+//     { id: 1, name: "John" },
+//     { id: 2, name: "Andrew" },
+//   ];
+//   (axios.get as jest.Mock).mockResolvedValue(users);
+
+//   const result = await Users();
+
+//   expect(axios.get).toHaveBeenCalledWith(`${BASE_URL}/users`);
+//   expect(result).toEqual(users);
+
+// const todoList =  waitFor(() => screen.findAllByTestId("todo"));
+// expect(todoList).toHaveLength(3);
+
+//   const response = await axios.get("/users");
+//   expect(response.status).toEqual(200);
+//   expect(response.data).toHaveLength(100);
+// });
+
+// test("check if select organisation input element exist", () => {
+//   render(
+//     <Router>
+//       <Users />
+//     </Router>
+//   );
+//   const inputEmail: HTMLInputElement =
+//     screen.getByPlaceholderText("organisation");
+//   expect(inputEmail).toBeInTheDocument();
+// });
+// test("check if user can input organisation", () => {
+//   render(
+//     <Router>
+//       <Users />
+//     </Router>
+//   );
+//   const inputEmail: HTMLInputElement =
+//     screen.getByPlaceholderText("organisation");
+//   fireEvent.change(inputEmail, { target: { value: "organisation" } });
+//   expect(inputEmail.value).toBe("organisation");
+// });
+// test("check if username input element exist", () => {
+//   render(
+//     <Router>
+//       <Users />
+//     </Router>
+//   );
+//   const inputEmail: HTMLInputElement = screen.getByPlaceholderText("username");
+//   expect(inputEmail).toBeInTheDocument();
+// });
+// test("check if user can input username", () => {
+//   render(
+//     <Router>
+//       <Users />
+//     </Router>
+//   );
+//   const inputEmail: HTMLInputElement = screen.getByPlaceholderText("username");
+//   fireEvent.change(inputEmail, { target: { value: "username" } });
+//   expect(inputEmail.value).toBe("username");
+// });
+// test("check if email input element exist", () => {
+//   render(
+//     <Router>
+//       <Users />
+//     </Router>
+//   );
+//   const inputEmail: HTMLInputElement = screen.getByPlaceholderText("email");
+//   expect(inputEmail).toBeInTheDocument();
+// });
+// test("check if user can input email", () => {
+//   render(
+//     <Router>
+//       <Users />
+//     </Router>
+//   );
+//   const inputEmail: HTMLInputElement = screen.getByPlaceholderText("email");
+//   fireEvent.change(inputEmail, { target: { value: "email" } });
+//   expect(inputEmail.value).toBe("email");
+// });
+// test("check if date input element exist", () => {
+//   render(
+//     <Router>
+//       <Users />
+//     </Router>
+//   );
+//   const inputEmail: HTMLInputElement = screen.getByPlaceholderText("date");
+//   expect(inputEmail).toBeInTheDocument();
+// });
+// test("check if user can input date", () => {
+//   render(
+//     <Router>
+//       <Users />
+//     </Router>
+//   );
+//   const inputEmail: HTMLInputElement = screen.getByPlaceholderText("date");
+//   fireEvent.change(inputEmail, { target: { value: "date" } });
+//   expect(inputEmail.value).toBe("date");
+// });
+
+// test("check if status input element exist", () => {
+//   render(
+//     <Router>
+//       <Users />
+//     </Router>
+//   );
+//   const inputEmail: HTMLInputElement = screen.getByPlaceholderText("status");
+//   expect(inputEmail).toBeInTheDocument();
+// });
+// test("check if user can input status", () => {
+//   render(
+//     <Router>
+//       <Users />
+//     </Router>
+//   );
+//   const inputEmail: HTMLInputElement = screen.getByPlaceholderText("status");
+//   fireEvent.change(inputEmail, { target: { value: "status" } });
+//   expect(inputEmail.value).toBe("status");
+// });
+
+// test("check button element", () => {
+//   render(
+//     <Router>
+//       <Users />
+//     </Router>
+//   );
+//   const elementButton: any = screen.getByTestId("btn");
+//   fireEvent.click(elementButton);
+//   expect(elementButton).toBeInTheDocument();
+// });

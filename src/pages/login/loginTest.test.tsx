@@ -11,7 +11,7 @@ test("show error message wwhen fields are not enter", () => {
   fireEvent.click(elementButton);
 });
 
-test("show Email input element", () => {
+test("check if Email input element exist", () => {
   render(
     <Router>
       <Login />
@@ -21,7 +21,7 @@ test("show Email input element", () => {
   expect(inputEmail).toBeInTheDocument();
 });
 
-test("show password input element", () => {
+test("check if Password input element exist", () => {
   render(
     <Router>
       <Login />
@@ -31,7 +31,7 @@ test("show password input element", () => {
   expect(inputEmail).toBeInTheDocument();
 });
 
-test("show if user can input Email", () => {
+test("check if user can input Email", () => {
   render(
     <Router>
       <Login />
@@ -41,7 +41,7 @@ test("show if user can input Email", () => {
   fireEvent.change(inputEmail, { target: { value: "email" } });
   expect(inputEmail.value).toBe("email");
 });
-test("show if user can input Password", () => {
+test("check if user can input Password", () => {
   render(
     <Router>
       <Login />

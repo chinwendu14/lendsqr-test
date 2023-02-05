@@ -1,7 +1,8 @@
 import axios from "axios";
-
-const BASE_URL = axios.create({
-  baseURL: "https://6270020422c706a0ae70b72c.mockapi.io/lendsqr/api/v1",
+export const BASE_URL =
+  "https://6270020422c706a0ae70b72c.mockapi.io/lendsqr/api/v1";
+const axiosInstatnce = axios.create({
+  baseURL: BASE_URL,
 });
 
-export default BASE_URL;
+export default axiosInstatnce;

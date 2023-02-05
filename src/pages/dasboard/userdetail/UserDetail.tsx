@@ -3,7 +3,7 @@ import "./userdatail.scss";
 import { BsArrowLeft, BsFillStarFill, BsStar } from "react-icons/bs";
 // import { userDetailImg } from "../../../assets";
 import { useParams } from "react-router-dom";
-import BASE_URL from "../../../config";
+import axiosInstatnce from "../../../config";
 const UserDetail = () => {
   const [showInfo, setShowinfo] = useState(1);
   const params = useParams();
@@ -14,7 +14,7 @@ const UserDetail = () => {
   };
   useEffect(() => {
     const getUser = async () => {
-      const detail = await BASE_URL.get(`/users/${id}`);
+      const detail = await axiosInstatnce.get(`/users/${id}`);
       const response = detail.data;
       setuserdetail(response);
     };
